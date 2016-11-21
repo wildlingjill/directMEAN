@@ -1,0 +1,96 @@
+
+<head>
+	<title>DirectMe</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+
+	<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>       
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+	<script src="../static/css/directme.js"></script> 
+</head>
+			
+<script type="text/javascript">
+
+	$(document).ready(function() {
+	$('select').material_select();
+	});
+  
+</script>  
+<body>
+
+	<div id="wrap">
+
+		<img src="http://i.imgur.com/AZ90hYU.jpg" />
+		<img src="http://i.imgur.com/ZE58bjz.jpg" />
+		<img src="http://i.imgur.com/atckXxP.jpg" />
+
+	</div>
+
+	<div id='header'>
+		<div class='weather'>
+			<h4><b>{{ temp }}°F</b></h4>
+			<h6>{{ weather }}</h6>
+			<form action='/logout' method='POST'>
+				<input id='logout_button' class="waves-effect waves-light btn" type="submit" value="Logout">
+			</form>
+		</div>
+		<div class='logo'>
+			<img class='direct' src="http://i.imgur.com/n26eoj9.png">
+		</div>
+	</div>
+
+	<div class="container"><center>
+		<div class='hello'><h3>Hello {{name}}</h3></div>
+			<div class="row2"> 
+				<p>Where would you like to go?</p><br>
+
+
+				<form action='/random_choice' method='POST'>
+						<div class="row input-field col s6">
+						<select name="category" id="category">
+							<option value="" disabled selected>Category</option>
+							<option value="food">Food/Restaurants</option>
+							<option value="nature">Nature/Outdoor</option>
+							<option value="nightlife">Nightlife</option>
+							<option value="sports">Sports</option>
+						</select>
+					</div>
+
+
+
+					<br><br>
+						<div class="row input-field col s6">
+						<select name="price" id="price">
+							<option value="" disabled selected>Price</option>
+							<option value="1">$</option>
+							<option value="2">$$</option>
+							<option value="3">$$$</option>
+							<option value="4">$$$$</option>
+						</select>
+					</div>
+					<br><br>
+						<div class="row input-field col s6">
+						<select name="distance" id="distance">
+							<option value="" disabled selected>Distance</option>
+							<option value="8000">Within 5 miles</option>
+							<option value="16000">Within 10 miles</option>
+							<option value="24000">Within 15 miles</option>
+							<option value="32000">Within 20 miles</option>
+							<option value="40000">Within 25 miles</option>
+						</select>
+					</div>
+					<br><br><br>
+					
+					<input id='directme_button' class="waves-effect waves-light btn" type="submit" value="DirectMe">
+					<br>
+				</form>
+
+			</div>
+		</div>
+	</center>
+	</div>
+
+</body>

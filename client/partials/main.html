@@ -1,0 +1,109 @@
+
+	<head>
+		<meta charset="utf-8">
+		<title>DirectMe</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>       
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../static/css/lstyles.css">
+
+	<script type="text/javascript">
+
+	  	$(document).ready(function() {
+			$('select').material_select();
+	  	});
+	  
+	</script>
+
+	</head>
+<body>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<p>{{ message }}</p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+<div id='header'>
+	<div class='logo'>
+		<img class='direct' src="http://i.imgur.com/n26eoj9.png">
+	</div>
+</div>	
+
+
+<center>
+	<div class='container'>
+		<div class='box'>
+			<div class="log">
+				<h2>Login</h2><br>
+				<form action='/login' method='POST'>
+					<div class="row input-field col s12">
+						
+						  			<input type="text" name="email" id="email" class="validate">
+						  			<label for="email" data-error="wrong" data-success="right">Email</label>
+					 		
+				 	</div>
+
+				 	<div class="row input-field col s12">
+								
+						  			<input type="password" name="password" id="password" class="validate">
+						  			<label for="password">Password</label>
+					  		
+				  	</div>
+					<!-- <a href="/login" class="waves-effect waves-light btn" type="submit" value="Login">Login</a> -->
+					<!-- <form action='/login' method='post'> -->
+						<input class='waves-effect waves-light btn' type="submit" value="Login">
+					<!-- </form> -->
+				</form>
+			</div>
+
+
+			<div class="reg">
+				<h2>Register</h2>
+				<form action='/register' method='POST'>
+				  	<div class="row input-field col s6">
+						  	<input type="text" name="name" id="name" class="validate">
+						  	<label for="name" data-error="wrong" data-success="right">Name</label>
+					</div>	
+					<div class="row input-field col s6">
+						<input type="text" name="email" id="email" class="validate">
+						<label for="email" data-error="wrong" data-success="right">Email</label>
+					</div>
+					<div class="row input-field col s6">
+						<input type="text" name="phone" id="phone" class="validate">
+						<label for="phone" data-error="wrong" data-success="right">Cell Number</label>
+					</div>
+					
+
+
+					<div class="row input-field col s12">
+						<select name="city" id="city">
+						  	<option value="" disabled selected>   Cities</option>
+						  	<option value="1">San Francisco</option>
+						  	<option value="2">Houston</option>
+						  	<option value="3">New York</option>
+						  	<option value="4">Chicago</option>
+						</select>
+					</div>
+
+					<div class="row input-field col s6">
+							<input type="password" name="password" id="password" class="validate">
+							<label for="password" data-error="wrong" data-success="right">Password</label>
+					</div>
+					<div class="row input-field col s6">
+						<input type="password" name="c_password" id="c_password" class="validate">
+						<label for="password" data-error="wrong" data-success="right">Confirm Password</label>
+						
+					</div>
+
+<!-- 					<a href="/register" class="waves-effect waves-light btn" type="submit" value="Login">Register</a>
+-->					<input class="waves-effect waves-light btn" type="submit" value="Register">
+				</form>
+			</div>
+		</div>
+	</div>
+</center>
+
+</body>

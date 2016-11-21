@@ -1,16 +1,17 @@
-var app = angular.module('app', ['ngRoute', 'ngMessages']);
+var app = angular.module('app', ['ngRoute', 'ngMessages', 'routeStyles']);
 
 app.config(function ($routeProvider) {
 // Routes to load your new and edit pages with new and edit controllers attached to them!
 	$routeProvider
 
 	.when('/',{
-		templateUrl: 'partials/login.html',
-		controller: 'loginController'
+		templateUrl: 'partials/main.html',
+		controller: 'loginController',
+		// css: 'static/css/index.css'
 	})
 
 	.when('/dashboard',{
-		templateUrl: 'partials/dashboard.html',
+		templateUrl: 'partials/directme.html',
 		controller: 'dashController'
 	})
 

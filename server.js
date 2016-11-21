@@ -12,9 +12,9 @@ app.use(session({ secret: 'keyboard cat'}));
 
 require('./server/config/mongoose.js');
 
-var routes_setter = require('./server/config/routes.js');
+// var routes_setter = require('./server/config/routes.js');
 
-routes_setter(app);
+// routes_setter(app);
 
 app.listen(8000, function(){
 	console.log("Listening on port 8000");
