@@ -1,0 +1,23 @@
+{
+  "name": "directMEAN",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Jill Robinson",
+    "Devan Wong"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/wildlingjill/directMEAN",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "angular-messages": "^1.5.8"
+  }
+}
