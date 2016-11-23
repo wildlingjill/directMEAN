@@ -31,10 +31,10 @@
 
 	<div id='header'>
 		<div class='weather'>
-			<h4><b>{{ temp }}°F</b></h4>
-			<h6>{{ weather }}</h6>
-			<form action='/logout' method='POST'>
-				<input id='logout_button' class="waves-effect waves-light btn" type="submit" value="Logout">
+			<h4><b>66°F</b></h4>
+			<h6>Sunny</h6>
+			<form>
+				<input id='logout_button' class="waves-effect waves-light btn" type="submit" ng-click="logout()" value="Logout">
 			</form>
 		</div>
 		<div class='logo'>
@@ -43,7 +43,7 @@
 	</div>
 
 	<div class="container"><center>
-		<div class='hello'><h3>Hello {{name}}</h3></div>
+		<div class='hello'><h3>Hello {{username}}</h3></div>
 			<div class="row2"> 
 				<p>Where would you like to go?</p><br>
 

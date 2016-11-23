@@ -19,13 +19,13 @@
 
 	</head>
 <body>
-	{% with messages = get_flashed_messages() %}
+<!-- 	{% with messages = get_flashed_messages() %}
 		{% if messages %}
 			{% for message in messages %}
 				<p>{{ message }}</p>
 			{% endfor %}
 		{% endif %}
-	{% endwith %}
+	{% endwith %} -->
 <div id='header'>
 	<div class='logo'>
 		<img class='direct' src="http://i.imgur.com/n26eoj9.png">
@@ -38,23 +38,23 @@
 		<div class='box'>
 			<div class="log">
 				<h2>Login</h2><br>
-				<form action='/login' method='POST'>
+				<form>
 					<div class="row input-field col s12">
 						
-						  			<input type="text" name="email" id="email" class="validate">
-						  			<label for="email" data-error="wrong" data-success="right">Email</label>
+			  			<input type="text" name="email" ng-model="user.email" id="email" class="validate">
+			  			<label for="email" data-error="wrong" data-success="right">Email</label>
 					 		
 				 	</div>
 
 				 	<div class="row input-field col s12">
 								
-						  			<input type="password" name="password" id="password" class="validate">
-						  			<label for="password">Password</label>
+			  			<input type="password" name="password" ng-model="user.password" id="password" class="validate">
+			  			<label for="password">Password</label>
 					  		
 				  	</div>
 					<!-- <a href="/login" class="waves-effect waves-light btn" type="submit" value="Login">Login</a> -->
 					<!-- <form action='/login' method='post'> -->
-						<input class='waves-effect waves-light btn' type="submit" value="Login">
+						<input class='waves-effect waves-light btn' type="submit" value="Login" ng-click="login()">
 					<!-- </form> -->
 				</form>
 			</div>
@@ -62,48 +62,50 @@
 
 			<div class="reg">
 				<h2>Register</h2>
-				<form action='/register' method='POST'>
+				<form>
 				  	<div class="row input-field col s6">
-						  	<input type="text" name="name" id="name" class="validate">
+						  	<input type="text" name="name" ng-model="newUser.name" id="name" class="validate">
 						  	<label for="name" data-error="wrong" data-success="right">Name</label>
 					</div>	
 					<div class="row input-field col s6">
-						<input type="text" name="email" id="email" class="validate">
+						<input type="text" name="email" id="email" ng-model="newUser.email" class="validate">
 						<label for="email" data-error="wrong" data-success="right">Email</label>
 					</div>
-					<div class="row input-field col s6">
+					<!-- <div class="row input-field col s6">
 						<input type="text" name="phone" id="phone" class="validate">
 						<label for="phone" data-error="wrong" data-success="right">Cell Number</label>
-					</div>
+					</div> -->
 					
 
 
 					<div class="row input-field col s12">
-						<select name="city" id="city">
+						<input type="text" name="city" id="city" ng-model="newUser.city" class="validate">
+						<label for="city" data-error="wrong" data-success="right">City</label>
+						<!-- <select name="city" id="city">
 						  	<option value="" disabled selected>   Cities</option>
 						  	<option value="1">San Francisco</option>
 						  	<option value="2">Houston</option>
 						  	<option value="3">New York</option>
 						  	<option value="4">Chicago</option>
-						</select>
+						</select> -->
 					</div>
 
 					<div class="row input-field col s6">
-							<input type="password" name="password" id="password" class="validate">
+							<input type="password" name="password" ng-model="newUser.password" id="password" class="validate">
 							<label for="password" data-error="wrong" data-success="right">Password</label>
 					</div>
 					<div class="row input-field col s6">
-						<input type="password" name="c_password" id="c_password" class="validate">
+						<input type="password" name="c_password" ng-model="newUser.c_password" id="c_password" class="validate">
 						<label for="password" data-error="wrong" data-success="right">Confirm Password</label>
 						
 					</div>
 
 <!-- 					<a href="/register" class="waves-effect waves-light btn" type="submit" value="Login">Register</a>
--->					<input class="waves-effect waves-light btn" type="submit" value="Register">
+-->					<input class="waves-effect waves-light btn" type="submit" value="Register" ng-click="register()">
 				</form>
 			</div>
 		</div>
 	</div>
-</center>
+<!-- </center>
 
 </body>
