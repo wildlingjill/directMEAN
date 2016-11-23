@@ -48,43 +48,24 @@
 				<p>Where would you like to go?</p><br>
 
 
-				<form action='/random_choice' method='POST'>
-						<div class="row input-field col s6">
-						<select name="category" id="category">
-							<option value="" disabled selected>Category</option>
-							<option value="food">Food/Restaurants</option>
-							<option value="nature">Nature/Outdoor</option>
-							<option value="nightlife">Nightlife</option>
-							<option value="sports">Sports</option>
-						</select>
+				<form>
+					<div class="row input-field col s6">
+						<input type="text" name="category" ng-model="search.category" id="category" class="validate" placeholder="Category (e.g. Restaurants)">
 					</div>
 
 
 
 					<br><br>
-						<div class="row input-field col s6">
-						<select name="price" id="price">
-							<option value="" disabled selected>Price</option>
-							<option value="1">$</option>
-							<option value="2">$$</option>
-							<option value="3">$$$</option>
-							<option value="4">$$$$</option>
-						</select>
+					<div class="row input-field col s6">
+						<input type="text" name="price" ng-model="search.price" id="price" class="validate" placeholder="Price ($-$$$$)">
 					</div>
 					<br><br>
-						<div class="row input-field col s6">
-						<select name="distance" id="distance">
-							<option value="" disabled selected>Distance</option>
-							<option value="8000">Within 5 miles</option>
-							<option value="16000">Within 10 miles</option>
-							<option value="24000">Within 15 miles</option>
-							<option value="32000">Within 20 miles</option>
-							<option value="40000">Within 25 miles</option>
-						</select>
+					<div class="row input-field col s6">
+						<input type="text" name="distance" ng-model="search.distance" id="distance" class="validate" placeholder="Distance (0-25 miles)">
 					</div>
 					<br><br><br>
 					
-					<input id='directme_button' class="waves-effect waves-light btn" type="submit" value="DirectMe">
+					<input id='directme_button' class="waves-effect waves-light btn" type="submit" ng-click="direct(search)" value="DirectMe">
 					<br>
 				</form>
 

@@ -17,10 +17,34 @@ module.exports = {
 					var body = JSON.parse(body);
 					console.log(body.access_token);
 					var access_token = body["access_token"];
-					user_search = request.get("https://api.yelp.com/v3/businesses/search?term=%s&location=san+jose&price=%s&radius=%d&open_now=true&limit=15" % ("restaurants", "$$", 15), headers = {
-					"Authorization": "Bearer %s" % access_token
+					var category = req.body.category;
+					var price = req.body.price;
+					if (price == "$"){
+						price = 1;
+					} else if (price == "$$") {
+						price = 2;
+					} else if (price == "$$$") {
+						price = 3;
+					} else {
+						price = 4;
+					}
+					var distance = req.body.distance;
+					var options = {
+						url: "https://api.yelp.com/v3/businesses/search?term=" + category + "&location=san+jose&price=" + price + "&radius=" + distance + "&open_now=true&limit=15", 
+						method: 'GET',
+						headers: {
+							"Authorization": "Bearer " + access_token
+						}
+					}
+					request(options, function(err, response, body){
+						// console.log('response', response);
+						console.log('businesses:', JSON.parse(body).businesses);
+						var choices = JSON.parse(body).businesses;
+						var random_choice = choices[Math.floor(Math.random() * choices.length)];
+						console.log("random choice: ", random_choice);
+						res.json(random_choice);
+
 					})
-					console.log(user_search);
 				}
 				else {
 					console.log(body);
@@ -29,59 +53,4 @@ module.exports = {
 		);
 
 	}
-	// yelp: function(req,res){
-	// 	// console.log("in controller");
-	// 	// var options = {
-	// 	//   	host: 'api.yelp.com',
-	// 	//   	path: '/oauth2/token',
-	// 	//   	method: 'POST',
-	// 	//   	headers: {
-	// 	//   		grant_type: "client_credentials",
-	// 	// 		client_id: "Y15LUeDTm3oPU8ARaAe38g",
-	// 	// 		client_secret: "0FhMr0GldraHrGWgVvmctDjTKBgT2fusunSkbUaZdnDrtWPgSj4Epxi4e6SNEATc"
-	// 	//   	}
-	// 	// };
-
-	// 	// var req = https.request(options, function(res){
-	// 	// 	console.log('Status: ' + res.statusCode);
- //  // 			console.log('Headers: ' + JSON.stringify(res.headers));
- //  // 			var dat;
-	// 	// 	res.on('data', function(res){
-	// 	// 		console.log(res);
-	// 	// 		dat = dat+res;
-	// 	// 	})
-	// 	// 	res.on('end', function(res) {
-	// 	// 		console.log(dat);
-	// 	// 	})
-	// 	// })
-	// 	// req.end();
-	// 	request.post(
-	// 		''
-	// 	)
-	// },
-
 }
-
-
-
-// request.post(
-//     'http://api.yelp.com/oauth2/token',
-//     { json: { grant_type: 'client_credentials',
-//     	client_id: "Y15LUeDTm3oPU8ARaAe38g",
-//   		client_secret: "0FhMr0GldraHrGWgVvmctDjTKBgT2fusunSkbUaZdnDrtWPgSj4Epxi4e6SNEATc"
-//      } },
-//     function (error, response, body) {
-//         if (!error && response.statusCode == 200) {
-//             console.log(body)
-//         }
-//     }
-// );
-
-
-
-
-
-
-
-
-

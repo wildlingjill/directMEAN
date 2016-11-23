@@ -49,11 +49,13 @@ app.factory('userFactory', ['$http', function($http) {
 app.factory('apiFactory', ['$http', function($http){
 	var factory = {};
 
-	factory.apiCall = function(){
+	factory.apiCall = function(search, callback){
 		console.log("In factory");
-		$http.post('/yelpcall').then(function(response){
+		$http.post('/yelpcall', search).then(function(response){
 			console.log("Received in factory");
-			console.log(response.body);
+			console.log(response);
+			console.log(response.data);
+			callback(response.data);
 		})
 	}
 
@@ -68,7 +70,7 @@ app.controller('loginController', function($scope, userFactory, apiFactory, $rou
 		userFactory.login($scope.user, function(data){
 			console.log($scope.user);
 			console.log(data);
-			$cookies.username = $scope.user.name;		
+			$cookies.username = data.name;		
 			console.log($cookies.username);
 			$location.url('/dashboard');
 		});
@@ -77,7 +79,7 @@ app.controller('loginController', function($scope, userFactory, apiFactory, $rou
 
 	$scope.register = function(){
 		userFactory.register($scope.newUser, function(data){
-			$cookies.username = $scope.newUser.name;
+			$cookies.username = data.name;
 			console.log($cookies.username);
 			$location.url('/dashboard');
 		})
@@ -85,7 +87,17 @@ app.controller('loginController', function($scope, userFactory, apiFactory, $rou
 
 });
 
-app.controller('dashController', function($scope, userFactory, apiFactory, $routeParams, $location, $cookies, $rootScope) {
+app.controller('dashController', function($scope, userFactory, apiFactory, $sce, $routeParams, $location, $cookies, $rootScope) {
+
+	 $scope.trustSrc = function(src) {
+	    return $sce.trustAsResourceUrl(src);
+	}
+
+	if ($rootScope.destination) {
+		$scope.gmurl = 'https://www.google.com/maps/embed/v1/place?q=' + $rootScope.destination +'&key=AIzaSyDvR4OqyA3pxONqvIDqqtc5CfkS-GSjn_I'
+
+	}
+	
 
 	$scope.logout = function(){
 		$cookies.username = "";
@@ -93,7 +105,20 @@ app.controller('dashController', function($scope, userFactory, apiFactory, $rout
 	}
 
 	$scope.direct = function(){
-		
+		apiFactory.apiCall($scope.search, function(data){
+			$rootScope.name = data.name;
+			if (data.categories.isArray){
+				$rootScope.type = data.categories[0]['alias'];
+			} else {
+				$rootScope.type = data.categories['alias'];
+			}
+			$rootScope.rating = data.rating;
+			$rootScope.price = data.price;
+
+			$rootScope.destination = 'new york';
+
+			$location.url('/destination');
+		})
 	}
 	
 

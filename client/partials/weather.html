@@ -1,5 +1,5 @@
 
-	<head>
+<!-- 	<head>
 		<title>DirectMe</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
@@ -54,14 +54,14 @@
 
 		</head>
 				  
-<body>
+<body> -->
 
 	<div id='header'>
 		<div class='weather'>
 			<h4><b>{{ temp }}°F</b></h4>
 			<h6>{{ weather }}</h6>
-			<form action='/logout' method='POST'>
-				<input class="waves-effect waves-light btn button" type="submit" value="Logout">
+			<form>
+				<input id='logout_button' class="waves-effect waves-light btn" type="submit" ng-click="logout()" value="Logout">
 			</form>
 		</div>
 		<div class='logo'>
@@ -79,7 +79,7 @@
 				width=100%
 				height=100%
 				frameborder="0" style="border:0"
-				src="https://www.google.com/maps/embed/v1/place?q={{destination}}&key=AIzaSyDvR4OqyA3pxONqvIDqqtc5CfkS-GSjn_I" allowfullscreen>
+				src="{{gmurl}}" allowfullscreen>
 				</iframe>
 			</div>
 
@@ -103,8 +103,8 @@
 				<br>
 				<h5><b>Today is the perfect day to go to: </b></h5>
 				<br><br>
-				<h5 class="result">Destination: {{ yelpName }}</h5>
-				<h5 class="result">Type: {{activity_type}}</h5>
+				<h5 class="result">Destination: {{ name }}</h5>
+				<h5 class="result">Type: {{type}}</h5>
 				<h5 class="result">Rating: {{rating}}/5.0</h5>
 				<h5 class="result">Price: {{ price }}</h5>
 				<h5 class="result"><a href='{{website}}'>Yelp Page</a></h5>
